@@ -34,8 +34,10 @@ public class StudentFeignClientController
     }
 
     @PostMapping("students/")
-    public ResponseEntity createStudent(@RequestBody Student newStudent) {
-        return studentFeignClient.createStudent(newStudent);
+    public ResponseEntity<String> createStudent(@RequestBody Student newStudent) {
+        ResponseEntity<String> result = studentFeignClient.createStudent(newStudent);
+        return new ResponseEntity<String>("", result.getHeaders(), result.getStatusCode());
+
     }
 
     //@Transactional
@@ -45,9 +47,10 @@ public class StudentFeignClientController
     }
 
     @PutMapping("students/")
-    public ResponseEntity updateStudent(@RequestBody Student newStudent) {
-        return studentFeignClient.updateStudent(newStudent);
+    public ResponseEntity<String> updateStudent(@RequestBody Student newStudent) {
+        ResponseEntity<String> result = studentFeignClient.updateStudent(newStudent);
+        return new ResponseEntity<String>("", result.getHeaders(), result.getStatusCode());
     }
 
 
-    }
+}
